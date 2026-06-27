@@ -16,7 +16,7 @@ def carregar_dados():
             continue
         with open(f"{PASTA_DADOS}/{ano}.json", encoding="utf-8") as f:
             copas.append(json.load(f))
-        return copas
+    return copas
 
 if __name__ == "__main__":
     copas = carregar_dados()
