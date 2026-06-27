@@ -98,18 +98,3 @@ st.sidebar.markdown("Use os filtros abaixo para explorar os dados:")
 #]
 
 # Mostra na barra lateral quantas musicas foram encontradas
-st.sidebar.markdown("---")
-st.sidebar.markdown(f"**{len(df_filtrado):,} musicas** encontradas com esses filtros.")
-
-
-# =============================================================
-# KPIs - INDICADORES NUMERICOS EM DESTAQUE
-# Os KPIs sao calculados com base nos dados filtrados (df_filtrado)
-# Entao eles mudam automaticamente quando o usuario mexe nos filtros
-# =============================================================
-#st.markdown("### Indicadores Gerais")
-
-#col1, col2, col3 = st.columns(3)   # divide a linha em 3 colunas iguais
-
-# KPI 1: Total de streams
-#total_streams = df_filtrado["Streams"].sum()
