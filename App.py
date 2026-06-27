@@ -50,7 +50,7 @@ st.sidebar.markdown("Use os filtros abaixo para explorar os dados:")
 
 # FILTRO 1: Intervalo de anos
 # sorted() ordena os anos do menor para o maior
-anos_disponiveis = sorted(df["Year"].dropna().unique())
+# anos_disponiveis = sorted(df["Year"].dropna().unique())
 
 # int() converte para numero inteiro normal (o pandas usa Int64)
 ano_min = int(min(anos_disponiveis))
