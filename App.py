@@ -27,6 +27,13 @@ carregar_css("style.css")
 # ----------------------------------------------------------------
 copas = carregar_dados()
 
+copas = carregar_dados()
+
+st.write(f"Foram carregadas {len(copas)} copas.")
+
+df = tratar_dados(copas)
+
+st.dataframe(df)
 
 
 # =============================================================
