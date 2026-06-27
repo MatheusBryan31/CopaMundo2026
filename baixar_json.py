@@ -29,5 +29,5 @@ def baixar_json():
         else:
             print(f"✘ Erro ao baixar arquivo {ano}.")
 
-        if __name__ == "__main__":
-            baixar_json()
+if __name__ == "__main__":
+    baixar_json()
