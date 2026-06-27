@@ -1,10 +1,10 @@
-
+import requests
 import streamlit as st
 import pandas as pd
 import plotly.express as px
 
 st.set_page_config(
-    page_title="Spotify Dashboard",
+    page_title="Copas Dashboard",
     page_icon="S",
     layout="wide"           
 )
@@ -70,8 +70,19 @@ st.markdown("""
 # CARREGAMENTO DOS DADOS
 # =============================================================
 
-# URL do arquivo CSV no GitHub
-URL_DADOS = "https://raw.githubusercontent.com/Demibolt007/Spotify-Streaming-Insights-2010-2019/refs/heads/main/Spotify%20Dataset.csv"
+# URL dos arquivos JSON no GitHub
+anos = range(1930, 2023, 4)
+
+# Vetos que recebera os dados de cada uma das copas
+copas = []
+
+# Laço para ler todas as copas
+for ano in anos:
+    # Não houve copa nos anos da guerra
+    if ano in [1942, 1946]:
+        continue
+
+    URL_DADOS = "https://raw.githubusercontent.com/Demibolt007/Spotify-Streaming-Insights-2010-2019/refs/heads/main/Spotify%20Dataset.csv"
 
 # Le o CSV diretamente da internet e salva na variavel df
 df = pd.read_csv(URL_DADOS)
