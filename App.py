@@ -3,6 +3,7 @@ import pandas as pd
 import plotly.express as px
 from utils import carregar_css
 from carregar_dados import carregar_dados
+from tratamento import tratar_dados
 
 
 
@@ -34,6 +35,9 @@ copas = carregar_dados()
 st.markdown("# Spotify Streaming Dashboard")
 st.markdown("**Explorando os dados de streaming do Spotify entre 2010 e 2019**")
 st.markdown("---")
+
+df = tratar_dados(copas)
+print(df)
 
 
 # =============================================================
