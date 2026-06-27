@@ -26,19 +26,6 @@ carregar_css("style.css")
 # ----------------------------------------------------------------
 copas = carregar_dados()
 
-""" # Le o CSV diretamente da internet e salva na variavel df
-df = pd.read_csv(URL_DADOS)
-
-# Remove linhas onde a coluna Streams esta vazia
-df = df.dropna(subset=["Streams"])
-
-# Garante que Streams e um numero inteiro
-df["Streams"] = pd.to_numeric(df["Streams"], errors="coerce")
-df = df.dropna(subset=["Streams"])
-df["Streams"] = df["Streams"].astype(int)
-
-# Garante que Year e um numero inteiro
-df["Year"] = pd.to_numeric(df["Year"], errors="coerce").astype("Int64") """
 
 
 # =============================================================
