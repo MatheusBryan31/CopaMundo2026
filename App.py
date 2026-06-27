@@ -1,90 +1,32 @@
-import requests
 import streamlit as st
 import pandas as pd
 import plotly.express as px
+from utils import carregar_css
+from carregar_dados import carregar_dados
+
+
 
 st.set_page_config(
     page_title="Copas Dashboard",
-    page_icon="S",
-    layout="wide"           
+    page_icon="⚽",
+    layout="wide"
 )
 
-# -------------------------------------------------------------
-# ESTILO VISUAL (CSS)
-# Deixa o visual mais bonito com cores do Spotify
-# -------------------------------------------------------------
-st.markdown("""
-    <style>
-        /* Fundo geral da pagina */
-        .stApp {
-            background-color: #0f0f0f;
-            color: #ffffff;
-        }
-
-        /* Titulo principal */
-        h1 {
-            color: #1DB954;
-            font-size: 2.5rem;
-            font-weight: 800;
-            letter-spacing: -1px;
-        }
-
-        /* Subtitulos */
-        h2, h3 {
-            color: #ffffff;
-        }
-
-        /* Caixa dos KPIs (indicadores numericos) */
-        .kpi-box {
-            background: linear-gradient(135deg, #1a1a1a, #252525);
-            border: 1px solid #1DB954;
-            border-radius: 12px;
-            padding: 20px;
-            text-align: center;
-        }
-
-        /* Numero do KPI */
-        .kpi-number {
-            font-size: 2.2rem;
-            font-weight: 800;
-            color: #1DB954;
-        }
-
-        /* Rotulo do KPI */
-        .kpi-label {
-            font-size: 0.9rem;
-            color: #b3b3b3;
-            margin-top: 4px;
-        }
-
-        /* Linha separadora */
-        hr {
-            border-color: #1DB954;
-            opacity: 0.3;
-        }
-    </style>
-""", unsafe_allow_html=True)
 
 
-# =============================================================
-# CARREGAMENTO DOS DADOS
-# =============================================================
+# ----------------------------------------------------------------
+# Estilo CSS
+# ----------------------------------------------------------------
+carregar_css("style.css")
 
-# URL dos arquivos JSON no GitHub
-anos = range(1930, 2023, 4)
 
-# Vetos que recebera os dados de cada uma das copas
-copas = []
 
-# Laço para ler todas as copas
-for ano in anos:
-    # Não houve copa nos anos da guerra
-    if ano in [1942, 1946]:
-        continue
+# ----------------------------------------------------------------
+# Load de dados
+# ----------------------------------------------------------------
+copas = carregar_dados()
 
-    URL_DADOS = "https://raw.githubusercontent.com/Demibolt007/Spotify-Streaming-Insights-2010-2019/refs/heads/main/Spotify%20Dataset.csv"
-
-# Le o CSV diretamente da internet e salva na variavel df
+""" # Le o CSV diretamente da internet e salva na variavel df
 df = pd.read_csv(URL_DADOS)
 
 # Remove linhas onde a coluna Streams esta vazia
@@ -96,7 +38,7 @@ df = df.dropna(subset=["Streams"])
 df["Streams"] = df["Streams"].astype(int)
 
 # Garante que Year e um numero inteiro
-df["Year"] = pd.to_numeric(df["Year"], errors="coerce").astype("Int64")
+df["Year"] = pd.to_numeric(df["Year"], errors="coerce").astype("Int64") """
 
 
 # =============================================================
