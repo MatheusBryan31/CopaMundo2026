@@ -28,11 +28,12 @@ carregar_css("style.css")
 copas = carregar_dados()
 
 
+
 # =============================================================
 # CABECALHO DO DASHBOARD
 # =============================================================
-st.markdown("# Spotify Streaming Dashboard")
-st.markdown("**Explorando os dados de streaming do Spotify entre 2010 e 2019**")
+st.markdown("# Copas do Mundo Dashboard")
+st.markdown("**Explorando os dados históricos da Copa do Mundo da FIFA de 1930 até 2026**")
 st.markdown("---")
 
 df = tratar_dados(copas)
