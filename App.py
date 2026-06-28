@@ -49,41 +49,45 @@ df = tratar_dados(copas) # Carrega os dados
 # =============================================================
 # KPIs
 # =============================================================
+
+# Considera apenas Copas já encerradas
+df_finalizadas = df[df["Campeão"] != "-"]
+
 # Cria três colunas
 col1, col2, col3 = st.columns(3)
 
 # KPI 1 - Total de Copas
-total_copas = len(df)
+total_copas = len(df_finalizadas)
 
 # KPI 2 - Total de gols
-total_gols = df["Gols"].sum()
+total_gols = df_finalizadas["Gols"].sum()
 
 # KPI 3 - Maior campeão
-titulos = (
-    df[df["Campeão"] != "-"]["Campeão"]
-    .value_counts()
-)
+titulos = df_finalizadas["Campeão"].value_counts()
+
 maior_campeao = titulos.index[0]
 quantidade_titulos = titulos.iloc[0]
 
-
-
 with col1:
     st.metric(
-        label = "🏆 Total de Copas",
-        value = total_copas
+        label="🏆 Total de Copas",
+        value=total_copas
     )
+
 with col2:
     st.metric(
-        label = "⚽ Total de Gols",
-        value = total_gols
+        label="⚽ Total de Gols",
+        value=total_gols
     )
+
 with col3:
     st.metric(
-        label = "👑 Maior Campeão",
-        value = maior_campeao,
-        delta = f"{quantidade_titulos} titulos"
+        label="👑 Maior Campeão",
+        value=maior_campeao,
+        delta=f"{quantidade_titulos} títulos"
     )
+
+st.markdown("---")
 
 
 st.dataframe(df) # Exibe a tabela
