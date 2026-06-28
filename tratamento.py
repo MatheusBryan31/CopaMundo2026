@@ -77,7 +77,7 @@ def obter_campeao(final):
 
 
 
-def obter_vice(final):
+def obter_vice(final): #
     gols_time1 = final["score"]["ft"][0]
     gols_time2 = final["score"]["ft"][1]
 
@@ -148,7 +148,7 @@ def obter_campeao_1950(copa):
 
 
 
-def obter_vice(final):
+def obter_vice_1950(final): #
     score = final["score"]
 
     # Tempo normal
