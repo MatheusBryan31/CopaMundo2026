@@ -148,18 +148,37 @@ def obter_campeao_1950(copa):
 
 
 
-def obter_vice_1950(copa):
-    tabela = calcular_classificacao_1950(copa)
-    classificacao = sorted(
-        tabela.items(),
-        key=lambda item: (
-            item[1]["Pontos"],
-            item[1]["Saldo"],
-            item[1]["Gols"]
-        ),
-        reverse = True
-    )
-    return classificacao[1][0]
+def obter_vice(final):
+    score = final["score"]
+
+    # Tempo normal
+    gols_time1 = score["ft"][0]
+    gols_time2 = score["ft"][1]
+
+    if gols_time1 > gols_time2:
+        return final["team2"]
+    if gols_time2 > gols_time1:
+        return final["team1"]
+
+    # Prorrogação
+    if "et" in score:
+        gols_time1 = score["et"][0]
+        gols_time2 = score["et"][1]
+
+        if gols_time1 > gols_time2:
+            return final["team2"]
+        if gols_time2 > gols_time1:
+            return final["team1"]
+
+    # Pênaltis
+    if "p" in score:
+        pen_time1 = score["p"][0]
+        pen_time2 = score["p"][1]
+
+        if pen_time1 > pen_time2:
+            return final["team2"]
+        return final["team1"]
+    return "-"
 
 
 
