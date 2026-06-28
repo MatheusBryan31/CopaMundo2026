@@ -11,11 +11,11 @@ PASTA_DADOS = "Data"
 def carregar_dados():
     copas = []
     anos = range(1930, 2027, 4)
-    caminho = os.path.join(PASTA_DADOS, "Copas", f"{ano}.json")
 
     for ano in anos:
         if ano in [1942, 1946]:
             continue
+        caminho = os.path.join(PASTA_DADOS, "Copas", f"{ano}.json")
         with open(caminho, encoding="utf-8") as f:
             copas.append(json.load(f))
     return copas
