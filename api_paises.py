@@ -9,4 +9,4 @@ def consultar_pais(nome_pais):
 
     if resposta.status_code == 200:
         return resposta.json()[0]
-    return None;
+    return None
