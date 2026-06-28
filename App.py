@@ -41,8 +41,6 @@ copas = carregar_dados()
 st.markdown("# Copas do Mundo Dashboard")
 st.markdown("**Explorando os dados históricos da Copa do Mundo da FIFA de 1930 até 2026**")
 st.markdown("---")
-df = tratar_dados(copas)
-st.dataframe(df)
 
 
 
@@ -87,5 +85,7 @@ with col3:
 
 
 
+df = tratar_dados(copas)
+st.dataframe(df)
 st.sidebar.markdown("## Filtros")
 st.sidebar.markdown("Use os filtros abaixo para explorar os dados:")
