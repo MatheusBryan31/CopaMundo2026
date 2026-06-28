@@ -32,49 +32,57 @@ df_sedes = pd.read_csv(
 #       └── tratar_dados() -> Não é função auxiliar, apenas reune todas as funções e organiza a interface
 # =============================================================
 def encontrar_final(copa):
-    """
-    Procura a partida da final.
-    Caso a Copa ainda não tenha sido disputada (2026),
-    retorna None.
-    """
-
     for partida in copa["matches"]:
         if partida["round"] == "Final":
-
-            # Só retorna se a final possuir placar
             if "score" in partida:
                 return partida
-
     return None
 
 
 
 def obter_campeao(final):
-    """
-    Retorna o campeão da Copa.
-    """
+    score = final["score"]
 
-    gols_time1 = final["score"]["ft"][0]
-    gols_time2 = final["score"]["ft"][1]
+    # Tempo normal
+    gols_time1 = score["ft"][0]
+    gols_time2 = score["ft"][1]
 
     if gols_time1 > gols_time2:
         return final["team1"]
+    
+    if gols_time2 > gols_time1:
+        return final["team2"]
+    
+    # EMPATE TEMPO NORMAL = Prorrogação:
+    if "et" in score:
+        gols_time1 = score["et"][0]
+        gols_time2 = score["et"][1]
 
-    return final["team2"]
+        if gols_time1 > gols_time2:
+            return final["team1"]
+        
+        if gols_time2 > gols_time1:
+            return final["team2"]
+
+    # EMPATE PRORROGAÇÃO = Pênaltis:
+    if "p" in score:
+        pen_time1 = score["p"][0]
+        pen_time2 = score["p"][1]
+
+        if pen_time1 > pen_time2:
+            return final["team1"]
+        
+        return final["team2"]
+    return "-"
 
 
 
 def obter_vice(final):
-    """
-    Retorna o vice-campeão.
-    """
-
     gols_time1 = final["score"]["ft"][0]
     gols_time2 = final["score"]["ft"][1]
 
     if gols_time1 > gols_time2:
         return final["team2"]
-
     return final["team1"]
 
 
@@ -127,7 +135,6 @@ def calcular_classificacao_1950(copa):
 
 def obter_campeao_1950(copa):
     tabela = calcular_classificacao_1950(copa)
-
     classificacao = sorted(
         tabela.items(),
         key=lambda item: (
@@ -143,7 +150,6 @@ def obter_campeao_1950(copa):
 
 def obter_vice_1950(copa):
     tabela = calcular_classificacao_1950(copa)
-
     classificacao = sorted(
         tabela.items(),
         key=lambda item: (
@@ -158,27 +164,16 @@ def obter_vice_1950(copa):
 
 
 def contar_jogos(copa):
-    """
-    Conta o número de partidas cadastradas.
-    """
-
     return len(copa["matches"])
 
 
 
 def obter_total_gols(copa):
-    """
-    Soma todos os gols da Copa.
-    Ignora partidas sem resultado (2026).
-    """
-
     total_gols = 0
 
     for partida in copa["matches"]:
-
         if "score" not in partida:
             continue
-
         if "ft" not in partida["score"]:
             continue
 
@@ -186,34 +181,23 @@ def obter_total_gols(copa):
         gols_time2 = partida["score"]["ft"][1]
 
         total_gols += gols_time1 + gols_time2
-
     return total_gols
 
 
 
 def calcular_media(total_gols, quantidade_jogos):
-    """
-    Calcula a média de gols.
-    """
-
     if quantidade_jogos == 0:
         return 0
-
     return round(total_gols / quantidade_jogos, 2)
 
 
 
 def contar_selecoes(copa):
-    """
-    Conta quantas seleções participaram da Copa.
-    """
-
     selecoes = set()
 
     for partida in copa["matches"]:
         selecoes.add(partida["team1"])
         selecoes.add(partida["team2"])
-
     return len(selecoes)
 
 
@@ -223,10 +207,9 @@ def obter_sede(ano):
         df_sedes["Ano"] == ano,
         "Pais_Sede"
     ]
-    
+
     if resultado.empty:
-        return "-"
-    
+        return "-" 
     return resultado.iloc[0]
 
 
@@ -235,37 +218,29 @@ def obter_sede(ano):
 # TRATAMENTO DOS DADOS
 # =============================================================
 def tratar_dados(copas):
-
     lista = []
 
     for copa in copas:
-
         ano = int(copa["name"][-4:])
         sede = obter_sede(ano)
 
         if ano == 1950:
             campeao = obter_campeao_1950(copa)
             vice = obter_vice_1950(copa)
-        
         else:
             final = encontrar_final(copa)
-            
+    
             if final is None:
                 campeao = "-"
-                vice = "-"
-            
+                vice = "-"        
             else:
                 campeao = obter_campeao(final)
                 vice = obter_vice(final)
 
         jogos = contar_jogos(copa)
-
         total_gols = obter_total_gols(copa)
-
         media = calcular_media(total_gols, jogos)
-
         selecoes = contar_selecoes(copa)
-
         lista.append({
 
             "Ano": ano,
@@ -287,7 +262,5 @@ def tratar_dados(copas):
             "Seleções": selecoes
 
         })
-
     df = pd.DataFrame(lista)
-
     return df
