@@ -77,13 +77,7 @@ def obter_campeao(final):
 
 
 
-def obter_vice(final): #
-    gols_time1 = final["score"]["ft"][0]
-    gols_time2 = final["score"]["ft"][1]
 
-    if gols_time1 > gols_time2:
-        return final["team2"]
-    return final["team1"]
 
 
 
