@@ -211,14 +211,22 @@ def tratar_dados(copas):
 
     for copa in copas:
 
-        final = encontrar_final(copa)
+        ano = int(copa["name"][-4])
 
-        if final is None:
-            campeao = "-"
-            vice = "-"
+        if ano == 1950:
+            campeao = obter_campeao_1950(copa)
+            vice = obter_vice_1950(copa)
+        
         else:
-            campeao = obter_campeao(final)
-            vice = obter_vice(final)
+            final = encontrar_final(copa)
+            
+            if final is None:
+                campeao = "-"
+                vice = "-"
+            
+            else:
+                campeao = obter_campeao(final)
+                vice = obter_vice(final)
 
         jogos = contar_jogos(copa)
 
