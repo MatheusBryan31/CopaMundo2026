@@ -1,4 +1,5 @@
 import pandas as pd
+from api_paises import consultar_pais
 
 # =============================================================
 # FUNÇÕES AUXILIARES
@@ -65,6 +66,7 @@ def contar_selecoes(copa):
 # =============================================================
 def tratar_dados(copas):
     lista = []
+    dados_pais = consultar_pais(sede)
 
     for copa in copas:
         final = encontrar_final(copa)
