@@ -4,8 +4,9 @@ import os
 # =============================================================
 # ARQUIVO PARA CARREGAMENTO DOS DADOS
 # =============================================================
-
 PASTA_DADOS = "Data"
+
+
 
 def carregar_dados():
     copas = []
@@ -17,6 +18,8 @@ def carregar_dados():
         with open(f"{PASTA_DADOS}/{ano}.json", encoding="utf-8") as f:
             copas.append(json.load(f))
     return copas
+
+
 
 if __name__ == "__main__":
     copas = carregar_dados()
