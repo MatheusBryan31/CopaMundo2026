@@ -21,41 +21,59 @@ def encontrar_final(copa):
 # =============================================================
 def obter_campeao(final):
 
+    print("\n==============================")
+    print(final["team1"], "x", final["team2"])
+    print(final["score"])
+
     score = final["score"]
 
-    # Tempo normal
     gols1 = score["ft"][0]
     gols2 = score["ft"][1]
 
+    print("FT:", gols1, gols2)
+
     if gols1 > gols2:
+        print("Campeão pelo tempo normal:", final["team1"])
         return final["team1"]
 
     if gols2 > gols1:
+        print("Campeão pelo tempo normal:", final["team2"])
         return final["team2"]
 
-    # Prorrogação
     if "et" in score:
+
+        print("Existe prorrogação")
 
         et1 = score["et"][0]
         et2 = score["et"][1]
 
+        print("ET:", et1, et2)
+
         if et1 > et2:
+            print("Campeão na prorrogação:", final["team1"])
             return final["team1"]
 
         if et2 > et1:
+            print("Campeão na prorrogação:", final["team2"])
             return final["team2"]
 
-    # Pênaltis
     if "p" in score:
+
+        print("Existe pênaltis")
 
         p1 = score["p"][0]
         p2 = score["p"][1]
 
+        print("P:", p1, p2)
+
         if p1 > p2:
+            print("Campeão nos pênaltis:", final["team1"])
             return final["team1"]
 
+        print("Campeão nos pênaltis:", final["team2"])
         return final["team2"]
 
+    print("Sem resultado")
     return "-"
 
 
