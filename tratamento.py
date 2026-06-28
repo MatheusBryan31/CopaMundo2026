@@ -2,8 +2,19 @@ import pandas as pd
 
 # =============================================================
 # FUNÇÕES AUXILIARES
+#   Funções do arquivo:
+#       ├── encontrar_final()
+#       ├── obter_campeao()
+#       ├── obter_vice()
+#       ├── calcular_classificacao_1950()   ← NOVA
+#       ├── obter_campeao_1950()            ← NOVA
+#       ├── obter_vice_1950()               ← NOVA
+#       ├── contar_jogos()
+#       ├── obter_total_gols()
+#       ├── calcular_media()
+#       ├── contar_selecoes()
+#       └── tratar_dados()
 # =============================================================
-
 def encontrar_final(copa):
     """
     Procura a partida da final.
@@ -21,6 +32,7 @@ def encontrar_final(copa):
     return None
 
 
+
 def obter_campeao(final):
     """
     Retorna o campeão da Copa.
@@ -33,6 +45,7 @@ def obter_campeao(final):
         return final["team1"]
 
     return final["team2"]
+
 
 
 def obter_vice(final):
@@ -49,12 +62,60 @@ def obter_vice(final):
     return final["team1"]
 
 
+
+def calcular_classificacao_1950(copa):
+    tabela = {}
+
+    for partida in copa["matches"]:
+        if partida["round"] != "Final Round":
+            continue
+        if "score" not in partida:
+            continue
+
+        time1 = partida["team1"]
+        time2 = partida["team2"]
+
+        gols1 = partida["score"]["ft"][0]
+        gols2 = partida["score"]["ft"][1]
+        
+        # Inicializa os times na tabela
+        for time in [time1, time2]:
+            if time not in tabela:
+                tabela[time] = {
+                    "Pontos":0,
+                    "Saldo":0,
+                    "Gols":0
+                }
+        # Soma gols marcados
+        tabela[time1]["Gols"] += gols1
+        tabela[time2]["Gols"] += gols2
+
+        # Soma Saldo
+        tabela[time1]["Saldo"] += gols1 - gols2
+        tabela[time2]["Saldo"] += gols2 - gols1
+
+        # Vitória
+        if gols1 > gols2:
+            tabela[time1]["Pontos"] += 2
+
+        elif gols2 > gols1:
+            tabela[time2]["Pontos"] += 2
+
+        # Empate
+        else:
+            tabela[time1]["Pontos"] += 1
+            tabela[time2]["Pontos"] += 1
+    return tabela
+
+
+
 def contar_jogos(copa):
     """
     Conta o número de partidas cadastradas.
     """
 
     return len(copa["matches"])
+
 
 
 def obter_total_gols(copa):
@@ -81,6 +142,7 @@ def obter_total_gols(copa):
     return total_gols
 
 
+
 def calcular_media(total_gols, quantidade_jogos):
     """
     Calcula a média de gols.
@@ -90,6 +152,7 @@ def calcular_media(total_gols, quantidade_jogos):
         return 0
 
     return round(total_gols / quantidade_jogos, 2)
+
 
 
 def contar_selecoes(copa):
@@ -106,10 +169,10 @@ def contar_selecoes(copa):
     return len(selecoes)
 
 
+
 # =============================================================
 # TRATAMENTO DOS DADOS
 # =============================================================
-
 def tratar_dados(copas):
 
     lista = []
