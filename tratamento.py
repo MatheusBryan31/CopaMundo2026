@@ -148,7 +148,7 @@ def obter_campeao_1950(copa):
 
 
 
-def obter_vice_1950(final): #
+def obter_vice_1950(copa): #
     score = final["score"]
 
     # Tempo normal
