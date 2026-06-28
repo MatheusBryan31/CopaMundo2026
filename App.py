@@ -13,9 +13,6 @@ from tratamento import tratar_dados
 #   ganizar de forma clara e objetiva todas as informações que
 #   os dados exprimem sobre a as Copas do Mundo da FIFA.
 # =============================================================
-
-
-
 st.set_page_config(
     page_title="Copas Dashboard",
     page_icon="⚽",
@@ -44,9 +41,51 @@ copas = carregar_dados()
 st.markdown("# Copas do Mundo Dashboard")
 st.markdown("**Explorando os dados históricos da Copa do Mundo da FIFA de 1930 até 2026**")
 st.markdown("---")
-
 df = tratar_dados(copas)
 st.dataframe(df)
+
+
+
+# =============================================================
+# KPIs
+# =============================================================
+# Cria três colunas
+col1, col2, col3 = st.columns(3)
+
+# KPI 1 - Total de Copas
+total_copas = len(df)
+
+# KPI 2 - Total de gols
+total_gols = df["Gols"].sum()
+
+# KPI 3 - Maior campeão
+titulos = (
+    df[df["Campeão"] != "-"]["Campeão"]
+    .value_counts()
+)
+maior_campeao = titulos.index[0]
+quantidade_titulos = titulos.iloc[0]
+
+
+
+with col1:
+    st.metric(
+        label = "🏆 Total de Copas",
+        value = total_copas
+    )
+with col2:
+    st.metric(
+        label = "⚽ Total de Gols",
+        value = total_gols
+    )
+with col3:
+    st.metric(
+        label = "👑 Maior Campeão",
+        value = maior_campeao,
+        delta = f"{quantidade_titulos} titulos"
+    )
+
+
 
 st.sidebar.markdown("## Filtros")
 st.sidebar.markdown("Use os filtros abaixo para explorar os dados:")
