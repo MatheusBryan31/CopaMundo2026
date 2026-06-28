@@ -238,7 +238,7 @@ def tratar_dados(copas):
 
         lista.append({
 
-            "Ano": int(copa["name"][-4:]),
+            "Ano": ano,
 
             "Nome": copa["name"],
 
