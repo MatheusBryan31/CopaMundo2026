@@ -1,4 +1,19 @@
+import os
 import pandas as pd
+
+
+
+# =============================================================
+# LEITURA DAS SEDES
+# =============================================================
+CAMINHO_SEDES = os.path.join("Data", "sedes.csv")
+
+df_sedes = pd.read_csv(
+    CAMINHO_SEDES,
+    sep=";"
+)
+
+
 
 # =============================================================
 # FUNÇÕES AUXILIARES
@@ -6,14 +21,15 @@ import pandas as pd
 #       ├── encontrar_final()
 #       ├── obter_campeao()
 #       ├── obter_vice()
-#       ├── calcular_classificacao_1950()   ← NOVA
-#       ├── obter_campeao_1950()            ← NOVA
-#       ├── obter_vice_1950()               ← NOVA
+#       ├── calcular_classificacao_1950()   
+#       ├── obter_campeao_1950()            
+#       ├── obter_vice_1950()               
 #       ├── contar_jogos()
 #       ├── obter_total_gols()
 #       ├── calcular_media()
 #       ├── contar_selecoes()
-#       └── tratar_dados()
+#       ├── obter_sede()
+#       └── tratar_dados() -> Não é função auxiliar, apenas reune todas as funções e organiza a interface
 # =============================================================
 def encontrar_final(copa):
     """
@@ -202,6 +218,19 @@ def contar_selecoes(copa):
 
 
 
+def obter_sede(ano):
+    resultado = df_sedes.loc[
+        df_sedes["Ano"] == ano,
+        "Pais_Sede"
+    ]
+    
+    if resultado.empty:
+        return "-"
+    
+    return resultado.iloc[0]
+
+
+
 # =============================================================
 # TRATAMENTO DOS DADOS
 # =============================================================
@@ -212,6 +241,7 @@ def tratar_dados(copas):
     for copa in copas:
 
         ano = int(copa["name"][-4:])
+        sede = obter_sede(ano)
 
         if ano == 1950:
             campeao = obter_campeao_1950(copa)
@@ -241,6 +271,8 @@ def tratar_dados(copas):
             "Ano": ano,
 
             "Nome": copa["name"],
+
+            "Sede": sede,
 
             "Campeão": campeao,
 
