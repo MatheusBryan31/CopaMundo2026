@@ -211,7 +211,7 @@ def tratar_dados(copas):
 
     for copa in copas:
 
-        ano = int(copa["name"][-4])
+        ano = int(copa["name"][-4:])
 
         if ano == 1950:
             campeao = obter_campeao_1950(copa)
