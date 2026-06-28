@@ -125,6 +125,21 @@ def obter_campeao_1950(copa):
 
 
 
+def obter_vice_1950(copa):
+    tabela = calcular_classificacao_1950(copa)
+
+    classificacao = sorted(
+        tabela.items(),
+        key=lambda item: (
+            item[1]["Pontos"],
+            item[1]["Saldo"],
+            item[1]["Gols"]
+        ),
+        reverse = True
+    )
+    return classificacao[1][0]
+
+
 
 def contar_jogos(copa):
     """
