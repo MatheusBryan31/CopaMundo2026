@@ -66,7 +66,7 @@ def contar_selecoes(copa):
 # =============================================================
 def tratar_dados(copas):
     lista = []
-    dados_pais = consultar_pais(sede)
+    dados_pais = consultar_pais(sede) #
 
     for copa in copas:
         final = encontrar_final(copa)

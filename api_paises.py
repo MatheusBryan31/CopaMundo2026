@@ -1,5 +1,5 @@
 import requests
-
+# Não há mais necessidade de usar este arquivo, todavia, por enquanto, vou deixá-lo aqui.
 # =============================================================
 # ARQUIVO PARA CONSULTAR DADOS DOS PAÍSES NA API
 # =============================================================
@@ -22,5 +22,5 @@ def consultar_pais(nome_pais):
 # TESTE DO ARQUIVO
 # =============================================================
 if __name__ == "__main__":
-    pais = consultar_pais("Brasil")
+    pais = consultar_pais("Brazil")
     print(pais)    
