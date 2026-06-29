@@ -45,7 +45,6 @@ df = tratar_dados(copas) # Carrega os dados
 
 
 
-
 # =============================================================
 # KPIs
 # =============================================================
@@ -90,6 +89,8 @@ with col3:
 st.markdown("---")
 
 
+
+# Restos do código de Suzana
 st.dataframe(df) # Exibe a tabela
 st.sidebar.markdown("## Filtros")
 st.sidebar.markdown("Use os filtros abaixo para explorar os dados:")
