@@ -4,6 +4,7 @@ import plotly.express as px
 from utils import carregar_css
 from carregar_dados import carregar_dados
 from tratamento import tratar_dados
+from filtros import aplicar_filtros
 
 
 
@@ -42,7 +43,7 @@ st.markdown("# Copas do Mundo Dashboard")
 st.markdown("**Explorando os dados históricos da Copa do Mundo da FIFA de 1930 até 2026**")
 st.markdown("---")
 df = tratar_dados(copas) # Carrega os dados
-
+df_filtrado = aplicar_filtros(df) # Carrega os filtros
 
 
 # =============================================================
@@ -85,12 +86,18 @@ with col3:
         value=maior_campeao,
         delta=f"{quantidade_titulos} títulos"
     )
-
 st.markdown("---")
+
+
+# =============================================================
+# TABELA
+# =============================================================
+st.dataframe(df)
+
 
 
 
 # Restos do código de Suzana
-st.dataframe(df) # Exibe a tabela
-st.sidebar.markdown("## Filtros")
-st.sidebar.markdown("Use os filtros abaixo para explorar os dados:")
+
+#st.sidebar.markdown("## Filtros")
+#st.sidebar.markdown("Use os filtros abaixo para explorar os dados:")
