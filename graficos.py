@@ -170,3 +170,25 @@ def exibir_graficos(df):
         grafico_selecoes(df)
     with col6:
         grafico_sedes(df)
+
+#?
+fig.update_layout(
+
+    template="plotly_dark",
+
+    paper_bgcolor="#0F172A",
+
+    plot_bgcolor="#0F172A",
+
+    font=dict(
+
+        color="white",
+        size=15
+
+    ),
+
+    title_x=0.5,
+
+    title_font_size=22
+
+)
