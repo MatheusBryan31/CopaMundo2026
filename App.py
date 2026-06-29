@@ -5,6 +5,7 @@ from utils import carregar_css
 from carregar_dados import carregar_dados
 from tratamento import tratar_dados
 from filtros import aplicar_filtros
+from graficos import exibir_graficos
 
 
 
@@ -93,6 +94,9 @@ st.markdown("---")
 # TABELA
 # =============================================================
 st.dataframe(df)
+st.markdown("---")
+st.subheader("Análises Gráficas")
+exibir_graficos(df)
 
 
 
