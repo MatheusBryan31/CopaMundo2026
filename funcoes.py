@@ -1,6 +1,19 @@
 import pandas as pd
 
-
+# =============================================================
+# ARQUIVO COM AS FUNÇÕES AUXILIARES DO ARQUIVO app.py
+#   Funções:
+#       ├── encontrar_final()
+#       ├── obter_campeao()
+#       ├── obter_vice()
+#       ├── calcular_classificacao_1950()
+#       ├── obter_campeao_1950()
+#       ├── obter_vice_1950()
+#       ├── contar_jogos()
+#       ├── obter_total_gols()
+#       ├── calcular_media()
+#       └── contar_selecoes()
+# =============================================================
 # =============================================================
 # FINAL DA COPA
 # =============================================================
