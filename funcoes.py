@@ -8,7 +8,7 @@ def encontrar_final(copa):
 
     for partida in copa["matches"]:
 
-        if "final" in partida["round"].lower():
+        if partida["round"].strip().lower() == "final":
 
             if "score" in partida:
                 return partida
