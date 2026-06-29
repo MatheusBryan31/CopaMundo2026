@@ -7,8 +7,6 @@ from tratamento import tratar_dados
 from filtros import aplicar_filtros
 from graficos import exibir_graficos
 
-
-
 # =============================================================
 # INTERFACE DO PROJETO
 #   Arquivo principal, cuja função é unir todo o projeto e or-
@@ -47,10 +45,10 @@ df = tratar_dados(copas) # Carrega os dados
 df = aplicar_filtros(df) # Carrega os filtros
 
 
+
 # =============================================================
 # KPIs
 # =============================================================
-
 # Considera apenas Copas já encerradas
 df_finalizadas = df[df["Campeão"] != "-"]
 
@@ -90,8 +88,9 @@ with col3:
 st.markdown("---")
 
 
+
 # =============================================================
-# TABELA
+# GRÁFICOS
 # =============================================================
 st.dataframe(df)
 st.markdown("---")
@@ -100,6 +99,10 @@ exibir_graficos(df)
 
 
 
+# =============================================================
+# TABELA
+# =============================================================
+st.dataframe(df)
 
 # Restos do código de Suzana
 
