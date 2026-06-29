@@ -3,169 +3,118 @@
 /* ==========================================================
    GERAL
 ========================================================== */
-
 html,
 body,
 [class*="css"]{
-
     font-family:"Segoe UI",sans-serif;
-
 }
-
 .stApp{
-
     background:#000512;
-
 }
+
+
 
 /* ==========================================================
    CABEÇALHO
 ========================================================== */
-
 h1{
-
     color:white;
-
     text-align:center;
-
     font-size:46px;
-
     font-weight:700;
-
 }
-
 p{
-
     color:#CBD5E1;
-
     font-size:18px;
-
 }
+
+
 
 /* ==========================================================
    KPI
 ========================================================== */
-
 [data-testid="stMetric"]{
-
     background:#1E293B;
-
     border-radius:18px;
-
     padding:20px;
-
     border:1px solid #334155;
-
     box-shadow:0 0 15px rgba(0,0,0,.35);
-
 }
-
 [data-testid="stMetric"]:hover{
-
     transform:translateY(-5px);
-
     transition:.3s;
-
     border:2px solid gold;
-
     box-shadow:0 0 20px rgba(255,215,0,.35);
-
 }
+
+
 
 /* ==========================================================
    SIDEBAR
 ========================================================== */
-
 section[data-testid="stSidebar"]{
-
     background:#111827;
-
 }
-
 section[data-testid="stSidebar"] h2,
 section[data-testid="stSidebar"] label{
-
     color:white;
-
 }
-
 div[data-baseweb="select"]{
-
     border-radius:12px;
-
 }
+
+
 
 /* ==========================================================
    BOTÕES
 ========================================================== */
-
 .stButton>button{
-
     background:#16A34A;
-
     color:white;
-
     border:none;
-
     border-radius:10px;
-
     transition:.3s;
-
 }
-
 .stButton>button:hover{
-
     background:#15803D;
-
 }
+
+
 
 /* ==========================================================
    TABELA
 ========================================================== */
-
 [data-testid="stDataFrame"]{
-
     border-radius:15px;
-
     overflow:hidden;
-
     border:1px solid #334155;
-
 }
+
+
 
 /* ==========================================================
    SCROLL
 ========================================================== */
-
 ::-webkit-scrollbar{
-
     width:10px;
-
 }
-
 ::-webkit-scrollbar-thumb{
-
     background:#16A34A;
-
     border-radius:10px;
-
 }
+
+
 
 /* ==========================================================
    LINHA DIVISÓRIA
 ========================================================== */
-
 hr{
-
     border:none;
-
     height:2px;
-
     background:linear-gradient(
         to right,
         transparent,
         #22C55E,
         transparent
     );
-
 }
